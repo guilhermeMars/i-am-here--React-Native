@@ -1,20 +1,23 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Link } from "expo-router";
-import { GraduationCap, BookOpen } from "lucide-react-native";
-
+import { GraduationCap, BookOpen, Smile } from "lucide-react-native";
+import SideMenu from "../components/SideMenu";
 /*
     Fazer side menu
     https://tiegoaraujo.medium.com/react-native-menu-lateral-68d00a22770b
 */
 
-const HomePage = () =>{
+const HomePage = () =>{    
     return(
         <View style={styles.screen}>
+            <SideMenu></SideMenu>
             <View style={styles.top}>
-                <Text style={styles.welcomeText}>Bem vindo, <br/>professor! ^^</Text>
+                <Text style={styles.welcomeText}>
+                    <Text>Bem vindo, <br/>professor! </Text>
+                    <Smile />
+                </Text>
             </View>
             <View style={styles.display}>
-            
                 <View style={styles.buttonView} >
                     <Link href="/sala" style={styles.btn}>
                         <GraduationCap style={styles.icon} />
