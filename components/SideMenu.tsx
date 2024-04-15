@@ -1,19 +1,22 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import HomePage from "../app/index";
 import UserPage from "../app/users/[id]";
+import CustomDrawer from "./CustomDrawer";
+
+const Drawer = createDrawerNavigator();
 
 const SideMenu = () =>{
     
-    const Drawer = createDrawerNavigator();
     
     return(
-        <NavigationContainer>
-            <Drawer.Navigator initialRouteName="App">
+        <View>
+            <Drawer.Navigator 
+            drawerContent={(props)=> <CustomDrawer {...props}/>}
+            >
                 <Drawer.Screen name="User" component={UserPage} />
             </Drawer.Navigator>
-        </NavigationContainer>
+        </View>
     )
 }
 

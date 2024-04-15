@@ -10,7 +10,7 @@ import SideMenu from "../components/SideMenu";
 const HomePage = () =>{    
     return(
         <View style={styles.screen}>
-            <SideMenu></SideMenu>
+            <SideMenu />
             <View style={styles.top}>
                 <Text style={styles.welcomeText}>
                     <Text>Bem vindo, <br/>professor! </Text>
@@ -19,7 +19,7 @@ const HomePage = () =>{
             </View>
             <View style={styles.display}>
                 <View style={styles.buttonView} >
-                    <Link href="/sala" style={styles.btn}>
+                    <Link href="/sala/" style={styles.btn}>
                         <GraduationCap style={styles.icon} />
                         <Text>Conferir chamada</Text>
                     </Link>
