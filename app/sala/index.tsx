@@ -16,7 +16,7 @@ const Salas = () =>{
             <View style={styles.classrooms}>
                 {classrooms.map((classroom) => {
                     return(
-                        <Link href={"/sala/" + classroom.id} style={styles.class}>
+                        <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
                             {classroom.name}
                         </Link>
                     )
