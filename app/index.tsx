@@ -19,7 +19,7 @@ const HomePage = () =>{
             </View>
             <View style={styles.display}>
                 <View style={styles.buttonView} >
-                    <Link href="/sala/" style={styles.btn}>
+                    <Link href="/sala" style={styles.btn}>
                         <GraduationCap style={styles.icon} />
                         <Text>Conferir chamada</Text>
                     </Link>
@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         width: 300,
         height: 140,
-        fontSize: 23
+        fontSize: 23,
+        textAlign: "center"
     },
     icon: {
         width: 45,

@@ -7,7 +7,7 @@ const RootLayout = () =>{
                 headerTitle: "Home Page",
                 headerShown: false
             }}/>
-            <Stack.Screen name="/sala" options={{
+            <Stack.Screen name="/" options={{
                 headerTitle: "User Page",
                 headerStyle: {
                     backgroundColor: "blue"

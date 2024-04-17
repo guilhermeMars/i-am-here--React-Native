@@ -1,14 +1,13 @@
-import { Button, StyleSheet, Text, TextInput, View } from "react-native"
+import { Pressable, StyleSheet, Text, View } from "react-native"
 import { Link } from "expo-router"
 import { classrooms } from "../../data/classrooms"
-import RNDateTimePicker, { DateTimePickerAndroid } from "@react-native-community/datetimepicker"
+import RNDateTimePicker from "@react-native-community/datetimepicker"
 import { CalendarDays } from "lucide-react-native"
 import { useState } from "react"
-import { SafeAreaView } from "react-native-safe-area-context"
 
 const Salas = () =>{
 
-    const [date, setDate] = useState(new Date(1598051730000));
+    const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
@@ -27,10 +26,6 @@ const Salas = () =>{
         showMode('date');
     };
 
-    const showTimepicker = () => {
-        showMode('time');
-    };
-
     return(
         <View>
             {/* 
@@ -41,31 +36,29 @@ const Salas = () =>{
 
             */}
             <View style={styles.background}>
-            <SafeAreaView>
-                <Button onPress={showDatepicker} title="Show date picker!" />
-                <Button onPress={showTimepicker} title="Show time picker!" />
-                <Text>selected: {date.toLocaleString()}</Text>
-                {show && (
-                    <RNDateTimePicker
-                    testID="dateTimePicker"
-                    value={date}
-                    is24Hour={true}
-                    onChange={onChange}
-                    />
-                )}
-            </SafeAreaView>
-                {/* <View style={styles.flex}>
+                <View style={styles.flex}>
                     <View style={styles.flexDate}>
-                        <TextInput style={styles.flexDateInput} onChangeText={setDateText} value={dateText} />
+                        <Pressable onPress={showDatepicker} style={styles.flexDateInput}>
+                            <Text style={styles.dateText}>Escolha uma data...</Text>
+                        </Pressable>
                         <CalendarDays />
+                        {show && (
+                            <RNDateTimePicker
+                            testID="dateTimePicker"
+                            value={date}
+                            is24Hour={true}
+                            onChange={onChange}
+                            />
+                        )}
                     </View>
-                </View> */}
+                    <Text>Dia: {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</Text>
+                </View>
                 <Text style={styles.tittle}>Escolha a sua sala!</Text>
             </View>
             <View style={styles.classrooms}>
                 {classrooms.map((classroom) => {
                     return(
-                        <Link key={classroom.id} href={"/sala/index.tsx" + classroom.id} style={styles.class}>
+                        <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
                             {classroom.name}
                         </Link>
                     )
@@ -102,11 +95,9 @@ const styles = StyleSheet.create({
     flexDateInput:{
         backgroundColor: "rgba(0,0,0,0)",
         borderWidth: 0,
+    },
+    dateText:{
         fontStyle: "italic",
-        fontWeight: "600",
-        height: 30,
-        width: 60,
-        padding: 10,
     },
     tittle:{
         textAlign: "center",
@@ -115,7 +106,7 @@ const styles = StyleSheet.create({
         fontWeight: "500"
     },
     classrooms:{
-        marginTop: -87,
+        marginTop: -60,
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
@@ -126,6 +117,7 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: 'center',
         justifyContent: 'center',
+        textAlign: "center",
         borderRadius: 6,
         elevation: 3,
         backgroundColor: 'lightblue',

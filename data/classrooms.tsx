@@ -5,7 +5,8 @@ export const students = Array.from({ length: 20 }).map(() => {
         id: faker.number.int({ min: 1000, max: 9000 }),
         name: faker.person.firstName(),
         lastName: faker.person.lastName(),
-        email: faker.internet.email().toLocaleLowerCase()
+        email: faker.internet.email().toLocaleLowerCase(),
+        RA: faker.number.int({ min: 100000, max: 900000 })
     }
 });
 

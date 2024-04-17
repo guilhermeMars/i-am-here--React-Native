@@ -1,5 +1,9 @@
 # Coisas a fazer
-- Rodar no Android
 - Testar o Menu
-- Testar o DatePicker
+   - Não está funcionando :)
 - Verificar se dá pra relacionar dados no Faker.js
+- Verificar por que ícones não aparecem no android
+## Feito
+- Rodar no Android
+   - Foi possível rodar no próprio celular, sem emulador
+- Testar o DatePicker
