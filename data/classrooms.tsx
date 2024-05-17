@@ -23,7 +23,14 @@ export const classrooms = Array.from({ length: 10 }).map(() =>{
             id3: faker.number.int({ min: 10000, max: 20000 }),
             id4: faker.number.int({ min: 10000, max: 20000 }),
             id5: faker.number.int({ min: 10000, max: 20000 }),
-            id6: faker.number.int({ min: 10000, max: 20000 })
+            id6: faker.number.int({ min: 10000, max: 20000 }),
+            id7: faker.number.int({ min: 10000, max: 20000 }),
+            id8: faker.number.int({ min: 10000, max: 20000 }),
+            id9: faker.number.int({ min: 10000, max: 20000 }),
+            id10: faker.number.int({ min: 10000, max: 20000 }),
+            id11: faker.number.int({ min: 10000, max: 20000 }),
+            id12: faker.number.int({ min: 10000, max: 20000 }),
+            id13: faker.number.int({ min: 10000, max: 20000 }),
         }
     } 
 });

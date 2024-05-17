@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { Pressable, StyleSheet, Text, View, ScrollView } from "react-native"
 import { Link } from "expo-router"
 import { classrooms } from "../../data/classrooms"
 import RNDateTimePicker from "@react-native-community/datetimepicker"
@@ -51,19 +51,21 @@ const Salas = () =>{
                             />
                         )}
                     </View>
-                    <Text>Dia: {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</Text>
+                    <Text style={styles.dateDisplayText}>Dia: {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</Text>
                 </View>
                 <Text style={styles.tittle}>Escolha a sua sala!</Text>
             </View>
-            <View style={styles.classrooms}>
-                {classrooms.map((classroom) => {
-                    return(
-                        <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
-                            {classroom.name}
-                        </Link>
-                    )
-                })}
-            </View>
+            <ScrollView style={styles.classrooms} contentContainerStyle={styles.contentContainerStyle}>
+                <View>
+                    {classrooms.map((classroom) => {
+                        return(
+                            <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
+                                {classroom.name}
+                            </Link>
+                        )
+                    })}
+                </View>
+            </ScrollView>
         </View>
     )
 }
@@ -99,19 +101,28 @@ const styles = StyleSheet.create({
     dateText:{
         fontStyle: "italic",
     },
+    dateDisplayText:{
+        backgroundColor: 'white',
+        padding: 4,
+        borderRadius: 4
+    },
     tittle:{
         textAlign: "center",
         fontSize: 25,
-        marginBottom: 20,
+        marginTop: 10,
         fontWeight: "500"
     },
     classrooms:{
-        marginTop: -60,
+        marginTop: -40,
+        
+    },
+    contentContainerStyle: {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        flexGrow: 2,
     },
     class:{
         display: "flex",
@@ -123,7 +134,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         marginHorizontal: 12,
         marginBottom: 12,
-        width: 120,
+        width: 200,
         height: 100,
         fontSize: 20,
         fontWeight: "500"
