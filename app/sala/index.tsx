@@ -28,13 +28,6 @@ const Salas = () =>{
 
     return(
         <View>
-            {/* 
-            
-            Fazer input de data
-            
-            https://github.com/react-native-datetimepicker/datetimepicker
-
-            */}
             <View style={styles.background}>
                 <View style={styles.flex}>
                     <View style={styles.flexDate}>
@@ -55,17 +48,19 @@ const Salas = () =>{
                 </View>
                 <Text style={styles.tittle}>Escolha a sua sala!</Text>
             </View>
-            <ScrollView style={styles.classrooms} contentContainerStyle={styles.contentContainerStyle}>
-                <View>
-                    {classrooms.map((classroom) => {
-                        return(
-                            <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
-                                {classroom.name}
-                            </Link>
-                        )
-                    })}
-                </View>
-            </ScrollView>
+            <View style={{height: 500}}>
+                <ScrollView style={styles.classrooms} >
+                    <View style={styles.containerStyle}>
+                        {classrooms.map((classroom) => {
+                            return(
+                                <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
+                                    {classroom.name}
+                                </Link>
+                            )
+                        })}
+                    </View>
+                </ScrollView>
+            </View>
         </View>
     )
 }
@@ -114,15 +109,14 @@ const styles = StyleSheet.create({
     },
     classrooms:{
         marginTop: -40,
-        
     },
-    contentContainerStyle: {
+    containerStyle: {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "center",
         justifyContent: "center",
-        flexGrow: 2,
+        flexGrow: 1,
     },
     class:{
         display: "flex",
@@ -134,10 +128,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         marginHorizontal: 12,
         marginBottom: 12,
-        width: 200,
         height: 100,
+        width: 150,
         fontSize: 20,
-        fontWeight: "500"
+        fontWeight: "500",
+        textAlignVertical: "center",
     }
 })
 

@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginLeft: 50,
         fontWeight: "500",
-        fontStyle: "italic"
+        fontStyle: "italic",
+        textAlignVertical: "center"
     },
     display: {
         display: "flex",
@@ -76,7 +77,8 @@ const styles = StyleSheet.create({
         width: 300,
         height: 140,
         fontSize: 23,
-        textAlign: "center"
+        textAlign: "center",
+        textAlignVertical: "center"
     },
     icon: {
         width: 45,
