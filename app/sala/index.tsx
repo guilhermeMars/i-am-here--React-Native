@@ -1,8 +1,8 @@
-import { Pressable, StyleSheet, Text, View, ScrollView } from "react-native"
+import { Pressable, StyleSheet, Text, View, ScrollView, ImageBackground } from "react-native"
 import { Link } from "expo-router"
 import { classrooms } from "../../data/classrooms"
 import RNDateTimePicker from "@react-native-community/datetimepicker"
-import { CalendarDays } from "lucide-react-native"
+import Icon from "react-native-vector-icons/Feather"
 import { useState } from "react"
 
 const Salas = () =>{
@@ -26,15 +26,19 @@ const Salas = () =>{
         showMode('date');
     };
 
+    const image = require('../../assets/Background-2.jpg')
+
     return(
         <View>
-            <View style={styles.background}>
+            <ImageBackground source={image} resizeMode="cover" style={{justifyContent: 'center'}}>
                 <View style={styles.flex}>
                     <View style={styles.flexDate}>
                         <Pressable onPress={showDatepicker} style={styles.flexDateInput}>
                             <Text style={styles.dateText}>Escolha uma data...</Text>
                         </Pressable>
-                        <CalendarDays />
+                        <Text>
+                            <Icon name="calendar" size={25} color="hsla(0, 0%, 0%, 0.6)" />
+                        </Text>
                         {show && (
                             <RNDateTimePicker
                             testID="dateTimePicker"
@@ -47,20 +51,20 @@ const Salas = () =>{
                     <Text style={styles.dateDisplayText}>Dia: {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</Text>
                 </View>
                 <Text style={styles.tittle}>Escolha a sua sala!</Text>
-            </View>
-            <View style={{height: 500}}>
-                <ScrollView style={styles.classrooms} >
-                    <View style={styles.containerStyle}>
-                        {classrooms.map((classroom) => {
-                            return(
-                                <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
-                                    {classroom.name}
-                                </Link>
-                            )
-                        })}
-                    </View>
-                </ScrollView>
-            </View>
+                <View style={{height: 500}}>
+                    <ScrollView style={styles.classrooms} >
+                        <View style={styles.containerStyle}>
+                            {classrooms.map((classroom) => {
+                                return(
+                                    <Link key={classroom.id} href={"/sala/" + classroom.id} style={styles.class}>
+                                        {classroom.name}
+                                    </Link>
+                                )
+                            })}
+                        </View>
+                    </ScrollView>
+                </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
         fontWeight: "500"
     },
     classrooms:{
-        marginTop: -40,
+        marginTop: 20,
     },
     containerStyle: {
         display: "flex",

@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ImageBackground, Dimensions } from "react-native";
 import { Link } from "expo-router";
-import { GraduationCap, BookOpen, Smile } from "lucide-react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import IconFeather from "react-native-vector-icons/Feather";
 // import SideMenu from "../components/SideMenu";
 /*
     Fazer side menu
@@ -8,42 +9,48 @@ import { GraduationCap, BookOpen, Smile } from "lucide-react-native";
 */
 
 const HomePage = () =>{
+
+    const image = require('../assets/Background-1.jpg');
+
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
+
     return(
         <View style={styles.screen}>
-            {/* <SideMenu /> */}
-            <View style={styles.top}>
-                <Text style={styles.welcomeText}>
-                    <Text>Bem vindo, professor! </Text>
-                    <Smile />
-                </Text>
-            </View>
-            <View style={styles.display}>
-                <View style={styles.buttonView} >
-                    <Link href="/sala" style={styles.btn}>
-                        <GraduationCap style={styles.icon} />
-                        <Text>Conferir chamada</Text>
-                    </Link>
-                    <Link href="/alunos" style={styles.btn}>
-                        <BookOpen style={styles.icon} />
-                        <Text>Pesquisar Aluno</Text>
-                    </Link>
+            <ImageBackground source={image} resizeMode="cover" style={{width: windowWidth, height: windowHeight}}>
+                {/* <SideMenu /> */}
+                <View style={styles.top}>
+                    <Text style={styles.welcomeText}>
+                        <Text>Bem vindo, professor! </Text>
+                        <IconFeather name="smile" size={40} color="black" />
+                    </Text>
                 </View>
-            </View>
+                <View style={styles.display}>
+                    <View style={styles.buttonView} >
+                        <Link href="/sala" style={styles.btn}>
+                            <Icon name="graduation-cap" size={30} color="black" style={{textAlignVertical: "center"}} />
+                            <Text>Conferir chamada</Text>
+                        </Link>
+                        <Link href="/alunos" style={styles.btn}>
+                            <IconFeather name="book-open" size={30} color="black" />
+                            <Text>Pesquisar Aluno</Text>
+                        </Link>
+                    </View>
+                </View>
+            </ImageBackground>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     screen: {
-        display: "flex",
-        flex: 1
     },
     top: {
-        backgroundColor: "#148FB6",
-        flex: 1,
+        marginTop: 10,
+        marginBottom: 100
     },
     welcomeText: {
-        fontSize: 25,
+        fontSize: 40,
         marginTop: 40,
         marginLeft: 50,
         fontWeight: "500",
@@ -53,11 +60,7 @@ const styles = StyleSheet.create({
     display: {
         display: "flex",
         alignItems: "center",
-        marginTop: -30,
-        backgroundColor: "#DCE3E5",
-        borderTopLeftRadius: 35,
-        borderTopRightRadius: 35,
-        flex: 3
+        justifyContent: "center",
     },
     buttonView: {
         marginTop: 50,

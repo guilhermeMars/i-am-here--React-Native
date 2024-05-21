@@ -1,9 +1,9 @@
 import { useLocalSearchParams } from "expo-router";
-import { View, Text, StyleSheet, TextInput } from "react-native"
+import { View, Text, StyleSheet, TextInput, ImageBackground, Dimensions } from "react-native"
+import Icon from 'react-native-vector-icons/Feather';
 import { students } from "../../data/classrooms";
 import Checkbox from "expo-checkbox";
 import { useState } from "react";
-import { Search } from "lucide-react-native";
 
 const Student = () =>{
 
@@ -12,10 +12,17 @@ const Student = () =>{
     const [presence, setPresence] = useState(false);
     const [justification, setJustification] = useState('');
     const [student, setStudent] = useState('');
+
+    const image = require('../../assets/Background-3.jpg')
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
+
     return(
-        <View style={styles.main}>
+        <ImageBackground source={image} resizeMode="cover" style={{width: windowWidth, height: windowHeight, paddingHorizontal: 25}}>
             <View style={styles.searchInput}>
-                <Search />
+                <Text>
+                    <Icon name="search" size={25} color="hsla(0, 0%, 0%, 0.6)" />
+                </Text>
                 <TextInput
                     value={student}
                     onChangeText={setStudent}
@@ -39,7 +46,7 @@ const Student = () =>{
                 />
             </View>
             <View style={styles.justification}>
-                <Text>Justificar falta:</Text>
+                <Text style={styles.justificationText}>Justificar falta:</Text>
                 <TextInput
                     multiline={true}
                     numberOfLines={5}
@@ -48,10 +55,10 @@ const Student = () =>{
                     style={styles.justificationInput}
                 />
             </View>
-            <View style={styles.btnCloseCall}> 
+            <View style={styles.btnCloseCall}>
                 <Text style={styles.textCloseCall}>Concluir</Text>
             </View>
-        </View>
+        </ImageBackground>
     )
 }
 
@@ -73,11 +80,9 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 40
     },
-    main: {
-        paddingHorizontal: 25,
-    },
     studentInfo:{
         backgroundColor: "lightblue",
+        borderRadius: 7,
         paddingHorizontal: 20,
         paddingVertical: 15,
         marginBottom: 25
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
     },
     changePresence: {
         backgroundColor: "lightblue",
+        borderRadius: 7,
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
@@ -104,8 +110,15 @@ const styles = StyleSheet.create({
     justification: {
         marginBottom: 40
     },
+    justificationText: {
+        color: "white",
+        fontSize: 18,
+        marginBottom: 5,
+        fontWeight: "bold"
+    },
     justificationInput: {
         backgroundColor: "white",
+        borderRadius: 5,
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderBlockColor: "lightgray",
@@ -116,13 +129,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        backgroundColor: "#148FB6",
+        backgroundColor: "white",
         marginHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 15
     },
     textCloseCall: {
-        color: "white",
+        color: "black",
         fontSize: 21
     }
 })

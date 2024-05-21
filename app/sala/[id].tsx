@@ -1,6 +1,6 @@
-import { StyleSheet, Text, TextInput, View, ScrollView, Platform} from "react-native";
+import { StyleSheet, Text, TextInput, View, ScrollView, ImageBackground} from "react-native";
+import Icon from 'react-native-vector-icons/Feather';
 import { useLocalSearchParams, Link } from "expo-router"
-import { Search } from "lucide-react-native";
 import React, { useState } from "react";
 import { students } from "../../data/classrooms";
 import Checkbox from 'expo-checkbox';
@@ -9,44 +9,50 @@ const Sala = () =>{
     
     const { id } = useLocalSearchParams<{ id: string }>();
     const [student, setStudent] = useState('');
+
+    const image = require('../../assets/Background-3.jpg')
     
     return(
         <View style={styles.main}>
-            <View style={styles.flex}>
-                <View style={styles.searchInput}>
-                    <Search />
-                    <TextInput
-                        value={student}
-                        onChangeText={setStudent}
-                        placeholder="Pesquisar por aluno"
-                        />
-                </View>
-            </View>
-            <Text style={styles.tittle}>Chamada do dia: {id}</Text>
-            <View style={styles.studentsView}>
-                <ScrollView>
-                    <View style={styles.flexStudents}>
-                        {students.map((student)=>{
-                            const [presence, setPresence] = useState(false);
-                            return(
-                                <View key={student.id} style={styles.students}>
-                                    <Link style={styles.studentName} href={"/student/" + student.id}>{student.name}/{student.RA}</Link>
-                                    <Checkbox
-                                        value={presence}
-                                        onValueChange={setPresence}
-                                        color="#2aa0c7"
-                                    />
-                                </View>
-                            )
-                        })}
+            <ImageBackground source={image} resizeMode="cover" style={{justifyContent: 'center'}}>
+                <View style={styles.flex}>
+                    <View style={styles.searchInput}>
+                        <Text>
+                            <Icon name="search" size={25} color="hsla(0, 0%, 0%, 0.6)" />
+                        </Text>
+                        <TextInput
+                            value={student}
+                            onChangeText={setStudent}
+                            placeholder="Pesquisar por aluno"
+                            />
                     </View>
-                </ScrollView>
-            </View>
-            <View style={styles.flex}>
-                <View style={styles.btnCloseCall}> 
-                <Text style={styles.textCloseCall}>Encerrar chamada</Text>
                 </View>
-            </View>
+                <Text style={styles.tittle}>Chamada do dia: {id}</Text>
+                <View style={styles.studentsView}>
+                    <ScrollView>
+                        <View style={styles.flexStudents}>
+                            {students.map((student)=>{
+                                const [presence, setPresence] = useState(false);
+                                return(
+                                    <View key={student.id} style={styles.students}>
+                                        <Link style={styles.studentName} href={"/student/" + student.id}>{student.name}/{student.RA}</Link>
+                                        <Checkbox
+                                            value={presence}
+                                            onValueChange={setPresence}
+                                            color="#2aa0c7"
+                                        />
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </ScrollView>
+                </View>
+                <View style={styles.flex}>
+                    <View style={styles.btnCloseCall}>
+                    <Text style={styles.textCloseCall}>Encerrar chamada</Text>
+                    </View>
+                </View>
+            </ImageBackground>
         </View>
     );
 }
@@ -60,16 +66,16 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     searchInput:{
-        paddingHorizontal: 10,
+        paddingHorizontal: 30,
         borderRadius: 3,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        gap: 3,
+        gap: 10,
         backgroundColor: "lightblue",
-        height: 30,
+        height: 40,
         marginTop: 30,
         marginBottom: 15
     },
@@ -109,14 +115,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        backgroundColor: "#148FB6",
+        backgroundColor: "white",
         width: 270,
         margin: 30,
         padding: 15,
         borderRadius: 15
     },
     textCloseCall: {
-        color: "white",
+        color: "black",
         fontSize: 21
     }
 })
